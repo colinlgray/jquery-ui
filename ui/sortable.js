@@ -749,8 +749,14 @@ return $.widget("ui.sortable", $.ui.mouse, {
 			t = this.options.toleranceElement ? $(this.options.toleranceElement, item.item) : item.item;
 
 			if (!fast) {
-				item.width = t.outerWidth();
-				item.height = t.outerHeight();
+				if(item.item.css("display") === "none") {
+					item.width = 0;
+					item.height = 0;
+				}
+				else {
+					item.width = t.outerWidth();
+					item.height = t.outerHeight();
+				}
 			}
 
 			p = t.offset();
